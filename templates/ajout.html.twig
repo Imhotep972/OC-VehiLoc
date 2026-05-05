@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block section %}
+    <section id="add">
+
+        {{ form_start(form) }}
+
+            <div class="input">
+        {{ form_row(form.name, {label: 'Nom de la voiture'}) }}
+            </div>
+            <div class="input">
+        {{ form_row(form.description, {label: 'Description'}) }}
+            </div>
+            <div class="flex-input">
+                <div class="input">
+        {{ form_row(form.prixMensuel, {label: 'Prix mensuel'}) }}
+                </div>
+                <div class="input">
+        {{ form_row(form.prixJournalier, {label: "Prix journalier"}) }}
+                </div>
+            </div>
+            <div class="input">
+            <div class="flex-input">
+                <div class="input">
+        {{ form_row(form.nombrePlace, {label: 'Nombre de place'}) }}
+            </div>
+            <div class="input">
+       {{ form_row(form.boiteVitesse, {label: 'Boite de vitesse'}) }}
+                </div>
+            </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        {{ form_end(form) }}
+
+    </section>
+
+
+{% endblock %}
+
