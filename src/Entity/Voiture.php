@@ -6,6 +6,7 @@ use App\Enum\BoiteVitesse;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
 class Voiture
@@ -15,22 +16,30 @@ class Voiture
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 2000, nullable: true)]
     private ?string $description = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
     private ?float $prixMensuel = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
     private ?float $prixJournalier = null;
 
+    #[Assert\NotBlank()]
+    #[Assert\Type(type: Types::INTEGER)]
+    #[Assert\Range(min:2,max:8)]
     #[ORM\Column(nullable: true)]
     private ?int $nombrePlace = null;
 
-    #[ORM\Column(nullable: true, type: Types::STRING, enumType: BoiteVitesse::class)]
+    #[Assert\NotBlank()]
+    #[ORM\Column(nullable: true,enumType: BoiteVitesse::class)]
     private ?BoiteVitesse $boiteVitesse = null;
 
     public function getId(): ?int
