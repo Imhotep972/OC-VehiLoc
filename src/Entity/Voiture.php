@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Enum\BoiteVitesse;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
 class Voiture
@@ -17,19 +18,19 @@ class Voiture
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 2000, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $prixMensuel = null;
+    #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
+    private ?float $prixMensuel = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $prixJournalier = null;
+    #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
+    private ?float $prixJournalier = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $nombrePlace = null;
 
-    #[ORM\Column(nullable: true, enumType: BoiteVitesse::class)]
+    #[ORM\Column(nullable: true, type: Types::STRING, enumType: BoiteVitesse::class)]
     private ?BoiteVitesse $boiteVitesse = null;
 
     public function getId(): ?int
@@ -61,24 +62,24 @@ class Voiture
         return $this;
     }
 
-    public function getPrixMensuel(): ?int
+    public function getPrixMensuel(): ?float
     {
         return $this->prixMensuel;
     }
 
-    public function setPrixMensuel(?int $prixMensuel): static
+    public function setPrixMensuel(?float $prixMensuel): static
     {
         $this->prixMensuel = $prixMensuel;
 
         return $this;
     }
 
-    public function getPrixJournalier(): ?int
+    public function getPrixJournalier(): ?float
     {
         return $this->prixJournalier;
     }
 
-    public function setPrixJournalier(?int $prixJournalier): static
+    public function setPrixJournalier(?float $prixJournalier): static
     {
         $this->prixJournalier = $prixJournalier;
 
@@ -108,4 +109,5 @@ class Voiture
 
         return $this;
     }
+
 }
