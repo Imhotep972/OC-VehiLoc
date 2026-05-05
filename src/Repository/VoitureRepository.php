@@ -2,18 +2,18 @@
 
 namespace App\Repository;
 
-use App\Entity\VehicLoc;
+use App\Entity\Voiture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<VehicLoc>
+ * @extends ServiceEntityRepository<Voiture>
  */
-class VehicLocRepository extends ServiceEntityRepository
+class VoitureRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, VehicLoc::class);
+        parent::__construct($registry, Voiture::class);
     }
 
 //    /**

@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 use App\Enum\BoiteVitesse;
-use App\Repository\VehicLocRepository;
+use App\Repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: VehicLocRepository::class)]
-class VehicLoc
+#[ORM\Entity(repositoryClass: VoitureRepository::class)]
+class Voiture
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
