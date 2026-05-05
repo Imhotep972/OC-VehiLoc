@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\VoitureRepository;
 use App\Entity\Voiture;
+use Doctrine\ORM\EntityManagerInterface;
 
 final class VoituresController extends AbstractController
 {
@@ -38,6 +39,20 @@ final class VoituresController extends AbstractController
         ]);
     }
 
+    #[Route('/voiture/{id}/supprimer', name: 'app_vehiloc_remove',methods: ['GET'],requirements:['id' =>'\d+'])]
+    public function remove(?Voiture $voiture, EntityManagerInterface $manager): Response
+    {
+        // on récupère toutes les voitures de la base
+        //$voitures = $repository->findAll();
 
+        if (!$voiture)
+        {
+            return $this->redirectToRoute('app_vehiloc_home');    
+        }
 
+        $manager->remove($voiture);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_vehiloc_home');
+    }
 }
